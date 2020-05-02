@@ -114,7 +114,7 @@ class MirrorListener(listeners.MirrorListeners):
                 share_url = requests.utils.requote_uri(f'{INDEX_URL}/{download_dict[self.uid].name()}')
                 if os.path.isdir(f'{DOWNLOAD_DIR}/{self.uid}/{download_dict[self.uid].name()}'):
                     share_url += '/'
-                msg += f'\n\n Shareable link: <a href="{share_url}">here</a>'
+                msg += f'\n\n ```INDEX URL```: <a href="{share_url}">रायता ना फैलाएं</a>'
             if self.tag is not None:
                 msg += f'\ncc: @{self.tag}'
             try:
@@ -188,7 +188,7 @@ def _mirror(bot, update, isTar=False):
     listener = MirrorListener(bot, update, isTar, tag)
     aria = aria2_download.AriaDownloadHelper(listener)
     aria.add_download(link, f'{DOWNLOAD_DIR}/{listener.uid}/')
-    sendStatusMessage(update, bot)
+    sendMessage('⁍.तो चलिए शुरू करते हैं।', bot, update)
     if len(Interval) == 0:
         Interval.append(setInterval(DOWNLOAD_STATUS_UPDATE_INTERVAL, update_all_messages))
 
